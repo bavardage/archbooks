@@ -1,6 +1,0 @@
-from django.conf.urls.defaults import *
-
-urlpatterns = patterns('',
-                       ('^books/add/(\w+)/$', 'archbooks.books.views.add'),
-                       ('^books/show/(\w+)/(\d*)/*', 'archbooks.books.views.show'),
-                       )
