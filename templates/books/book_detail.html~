@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}Showing Book - {{object.name}}{% endblock %}
+{% block header %}<h1>{{object}}</h1>{% endblock %}
+{% block content %}
+{{book.blurb}}
+{{book.genre}}
+{{book.amazon_link}}
+{% endblock %}

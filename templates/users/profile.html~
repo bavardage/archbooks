@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Profile for {{ request.user.username }}{% endblock %}
+
+{% block header %}<h1>Your Profile</h1>{% endblock %}
+
+{% block content %}
+<h2>Login Details {% ifequal request.user for_user %}<a class="headerlink" href="{{request.HTTP_ROOT}}/accounts/profile/edit/user/">edit</a>{% endifequal %}</h2>
+<dl>
+ <dt>Username</dt>
+ <dd>{{for_user.username}}</dd>
+ <dt>Email Address</dt>
+ <dd>{{for_user.email}}</dd>
+ <dt>Real Name</dt>
+ <dd>{{for_user.get_full_name}}</dd>
+</dl>
+<h2>Profile Details {% ifequal request.user for_user %}<a class="headerlink" href="{{request.HTTP_ROOT}}/accounts/profile/edit/profile/">edit</a>{% endifequal %}</h2>
+<dl>
+  <dt>Picture</dt>
+  <dd><img src="{{request.HTTP_ROOT}}/accounts/profile/get_user_picture/{{for_user.id}}" class="userimage"/></dd>
+  <dt>IRC Nickname</dt>
+  <dd>{{for_user.get_profile.irc_nickname}}</dd>
+  <dt>Other Info</dt>
+  <dd>{{for_user.get_profile.misc_info|safe}}</dd>
+</dl>
+{% endblock %}

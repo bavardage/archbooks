@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block head %}
+<script language="javascript">
+window.opener.addOptionToSelectOfId('{{popup}}', '{{added_what.id}}', '{{added_what}}', true, true);
+window.close();
+</script>
+{% endblock %}
+{% block content %}
+{% endblock %}

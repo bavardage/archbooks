@@ -1,0 +1,10 @@
+from django.conf.urls.default import *
+
+urlpatterns = patterns('',
+                       ('^accounts/login/$', 'django.contrib.auth.views.login'),
+                       ('^accounts/logout/$', 'django.contrib.auth.views.logout'),
+                       ('^accounts/profile/$', 'archbooks.users.views.user_profile'),
+                       ('^accounts/profile/(\d+)/$', 'archbooks.users.views.user_profile'),
+                       ('^accounts/profile/edit/(\w+)/$', 'archbooks.users.views.edit_profile'),
+                       ('^accounts/profile/get_user_picture/(\d+)/$', 'archbooks.users.views.get_user_picture'),
+                       )

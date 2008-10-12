@@ -1,0 +1,7 @@
+{% load tags %}
+
+<ul>
+<li><a href="{{ request.HTTP_ROOT }}/">Home</a></li>
+<li><a href="{{ request.HTTP_ROOT }}/about/">About</a></li>
+<li><a href="{{ request.HTTP_ROOT }}/contact/">Contact</a></li>
+</ul>

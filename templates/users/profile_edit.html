@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Editing Profile{% endblock %}
+{% block header %}<h1>Edit your Profile</h1>{% endblock %}
+{% block content %}
+<h2>Please edit your details<a class="headerlink" href="../..">back to profile</a></h2>
+<form enctype="multipart/form-data" method="post" action="#">
+<ul class="form">
+{{form.as_ul}}
+<li><input id="id_submit" type="submit" name="submit" value="update"/></li>
+</ul>
+</form>
+{% endblock %}

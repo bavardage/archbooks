@@ -1,0 +1,5 @@
+{% for message in request.user.get_and_delete_messages %}
+<div class="message">
+{{ message }}
+</div>
+{% endfor %}

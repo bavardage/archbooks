@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Showing Book - {{book.name}}{% endblock %}
+{% block header %}<h1>{{book}}</h1>{% endblock %}
+{% block content %}
+<div class="author">written by {{book.authors.all|join:", "}}</div>
+<blockquote>
+{{book.blurb}}
+</blockquote>
+<div class="info">
+Genre: {{book.genre}} 
+{% if book.series %}| Series: {{book.series}}{% endif %}
+{% if book.amazon_link %} | <a href="{{book.amazon_link}}">Amazon</a> {% endif %}
+</div>
+
+<h2>Reviews</h2>
+{% for review in book.review_set.all %}
+<div class="review" id="{{review.id}}">
+<strong>Reviewed by:</strong>
+<a href="{{request.HTTP_ROOT}}/accounts/profile/{{review.created_by.id}}">{{review.created_by}}</a>
+<br/><strong>Rating: </strong> {{review.get_rating_display}}
+<br/><blockquote>{{review.review_contents}}</blockquote>
+</div>
+{% endfor %}
+{% endblock %}

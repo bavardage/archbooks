@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<head>
+  {% block head %}
+  {% endblock %}
+  <title>Upload - {% block title %}{% endblock %}</title>
+  {% include "style.html" %}
+</head>
+<body>
+ <div id="navigation">
+ {% include "includes/navigation.html" %}
+ </div>
+ <div id="user">
+ {% include "includes/user.html" %}
+ </div>
+ <div id="messages">
+          {% include "includes/messages.html" %}
+       </div>
+    <div class="page" id="page">
+       <div class="header" id="header">
+	   {% block header %}
+	   	<h1>Page Title Here</h1>
+	   {% endblock %}
+       </div>
+       <div id="content">
+          {% block content %}{% endblock %}
+       </div>
+    </div>
+    <div id="footer">
+     {% include "includes/footer.html" %}
+    </div>
+</body>
+</html>

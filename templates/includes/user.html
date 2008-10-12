@@ -1,0 +1,9 @@
+{% if request.user.is_authenticated %}
+Welcome {%if request.user.first_name %} {{request.user.first_name}} {% else %} {{ request.user.username }} {% endif %}
+<br/><a href="{{ request.HTTP_HOST}}/accounts/profile">Profile</a>
+<br/><a href="{{ request.HTTP_HOST }}/accounts/logout">Log out</a>
+{% else %}
+You are not currently logged in.
+<br/><a href="{{ request.HTTP_HOST }}/accounts/login">Log in</a>
+{% endif %}
+
