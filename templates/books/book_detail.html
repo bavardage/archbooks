@@ -5,7 +5,7 @@
 {% block content %}
 <div class="author">written by {{book.authors.all|join:", "}}</div>
 <blockquote>
-{{book.blurb}}
+{{book.blurb|linebreaks}}
 </blockquote>
 <div class="info">
 Genre: {{book.genre}} 
@@ -13,9 +13,12 @@ Genre: {{book.genre}}
 {% if book.amazon_link %} | <a href="{{book.amazon_link}}">Amazon</a> {% endif %}
 </div>
 
-<h2>Reviews</h2>
+<h2>Reviews <a href="{% url books.views.add "review" %}?for_book={{book.id}}" class="headerlink">add a review</a></h2>
+{% if not book.review_set.count %}
+There are no reviews for this book :(
+{% endif %}
 {% for review in book.review_set.all %}
-<div class="review" id="{{review.id}}">
+<div class="review" id="{{review.id}}" class="review {% cycle 'review-even' 'review-odd' %}">
 <strong>Reviewed by:</strong>
 <a href="{{request.HTTP_ROOT}}/accounts/profile/{{review.created_by.id}}">{{review.created_by}}</a>
 <br/><strong>Rating: </strong> {{review.get_rating_display}}

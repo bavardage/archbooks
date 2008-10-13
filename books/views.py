@@ -8,16 +8,16 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.views.generic import list_detail
 
 modeldict = {'book': (Book, BookForm), 'author': (Author, AuthorForm), 'genre': (Genre, GenreForm), 'series': (Series, SeriesForm), 'review': (Review, ReviewForm)}
+specialfields = {'authors': 'author', 'series': 'series', 'genre': 'genre', 'for_book': 'book'}
 
 @login_required
 def add(request, add_what = None):
     if add_what not in modeldict:
         raise Http404
-
+    print "Get is", request.GET
     model, modelform = modeldict[add_what]
     popup = (request.GET['popup'] if 'popup' in request.GET else None)
     print "popup is", popup
-    specialfields = {'authors': 'author', 'series': 'series', 'genre': 'genre', 'for_book': 'book'}
     
     if request.method == 'POST':
         form = modelform(request.POST, request.FILES)
@@ -38,7 +38,7 @@ def add(request, add_what = None):
             else:
                 return render_to_response('books/done.html', RequestContext(request, {'added_what': saved, 'what_is_it': add_what}))
     else: #form not already created - make one!
-        form = modelform()
+        form = modelform({'for_book': 1})
     return render_to_response('books/add.html', RequestContext(request, {'adding_what': add_what.title(), 'form': form, 'specials': specialfields}))
 
 def show(request, show_what, id=None):
@@ -64,3 +64,18 @@ def show(request, show_what, id=None):
                                              )
         else:
             raise Http404
+
+def edit(request, edit_what, id):
+    if edit_what not in modeldict:
+        raise Http404
+    model,modelform = modeldict[edit_what]
+    modelinstance = get_object_or_404(model, id=id)
+    if request.method == 'POST':
+        form = modelform(request.POST, request.FILES,instance=modelinstance)
+        if form.is_valid():
+            added_what = form.save()
+            #request.user.message_set.create('%s Successfully Updated' % edit_what.title())
+            return render_to_response('books/done.html', RequestContext(request, {'added_what': added_what, 'what_is_it': edit_what}))
+    else:
+        form = modelform(instance=modelinstance)
+    return render_to_response("books/add.html", RequestContext(request, {'form': form, 'specials': specialfields}))
