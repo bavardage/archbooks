@@ -1,10 +1,6 @@
 from django import template
 
 register = template.Library()
-
-@register.simple_tag
-def magic(request):
-	return "more magic"
 	
 @register.simple_tag
 def navigation(request):
@@ -13,11 +9,16 @@ def navigation(request):
 @register.simple_tag
 def doformul(form, specialfields=None):
 	toreturn = ''
-	print "special are", specialfields
 	for field in form:
-		toreturn += '<li>%s %s %s' % (field.errors, field.label_tag(), field)
+		toreturn += '<li>%s %s %s' % (field.errors,
+					      field.label_tag(),
+					      field)
 		if field.html_name in specialfields:
-			toreturn += '<a href="#" onClick="window.open(\'../%s?popup=%s\');">+</a>' % (specialfields[field.html_name], 'id_' + field.html_name)
+			toreturn += '<a href="#" \
+ onClick="window.open(\'../%s?popup=%s\');">+</a>' % (
+				specialfields[field.html_name], 
+				'id_' + field.html_name
+				)
 		toreturn += '<br/>%s</li>' % field.help_text
 	return toreturn
 

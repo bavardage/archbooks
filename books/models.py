@@ -7,6 +7,7 @@ class BookModel(models.Model):
     class Meta:
         abstract = True
 
+
 class Genre(BookModel):
     name = models.CharField(max_length=30, unique=True)
     description = models.CharField(max_length=100)
@@ -15,7 +16,8 @@ class Genre(BookModel):
         return u'%s' % self.name
 
     class Meta:
-        ordering = ["name"]
+        ordering = ["name",]
+
 
 class Author(BookModel):
     first_name = models.CharField(max_length=30)
@@ -23,17 +25,21 @@ class Author(BookModel):
 
     def __unicode__(self):
         return u'%s %s' % (self.first_name, self.last_name)
+
     class Meta:
-        ordering = ["last_name"]
+        ordering = ["last_name",]
+
 
 class Series(BookModel):
     name = models.CharField(max_length=100)
     
     def __unicode__(self):
         return u'The %s Series' % (self.name)
+
     class Meta:
-        ordering = ["name"]
+        ordering = ["name",]
         verbose_name_plural = "Series"
+
 
 class Book(BookModel):
     title = models.CharField(max_length=50)
@@ -50,8 +56,10 @@ class Book(BookModel):
     
     def __unicode__(self):
         return self.title
+
     class Meta:
-        ordering = ["title"]
+        ordering = ["title",]
+
 
 class Review(BookModel):
     RATING_CHOICES = (
