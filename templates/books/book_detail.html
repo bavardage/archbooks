@@ -13,7 +13,7 @@ Genre: {{book.genre}}
 {% if book.amazon_link %} | <a href="{{book.amazon_link}}">Amazon</a> {% endif %}
 </div>
 
-<h2>Reviews <a href="{% url books.views.add "review" %}?for_book={{book.id}}" class="headerlink">add a review</a></h2>
+<h2>Reviews <a href="{% url books.views.add "review" %}?for_book={{book.id}}&back_to={% url books.views.show "book" book.id%}" class="headerlink">add a review</a></h2>
 {% if not book.review_set.count %}
 There are no reviews for this book :(
 {% endif %}

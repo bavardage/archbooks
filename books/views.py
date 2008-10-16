@@ -54,7 +54,17 @@ def add(request, add_what = None):
                                                          )
                                           )
     else: #form not already created - make one!
-        form = modelform() # TODO: add initial values depending on GET
+        initial_values = {}
+        for autofill, function in modelform.Meta.get_autofill:
+            if callable(function):
+                try:
+                    initial_values[autofill] = function(request.GET.get(autofill, ''))
+                except TypeError:
+                    pass #if value doesn't go with the function passed, then 'taint so ignore
+                except ValueError:
+                    pass
+        #print "initial values are", initial_values
+        form = modelform(initial=initial_values)
     return render_to_response('books/add.html',
                               RequestContext(request,
                                              {'adding_what': add_what.title(),

@@ -3,5 +3,5 @@
 {% block header %}<h1>The {{what_is_it|title}} was added</h1>{% endblock %}
 
 {% block content %}
-<a href="{% url books.views.show what_is_it,added_what.id %}">Go and take a look</a>
+{% if request.GET.back_to %} <a href="{{request.HTTP_ROOT}}{{request.GET.back_to}}">Go and take a look</a>{% endif %}
 {% endblock %}

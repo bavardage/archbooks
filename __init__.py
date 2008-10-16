@@ -1,13 +1,13 @@
 '''
 TODO LIST
-- make other info for user profile accept null/blank
+DONE - make other info for user profile accept null/blank
 - make frontpage sane
-- enable display of reviews, etc
-- do add/review/?forbook = some id
+DONE - enable display of reviews, etc
+DONE - do add/review/?forbook = some id
 - register page
 - edit stuff
 - book pictures?
 - MOAR/tidy css
 - isbn auto fill
-- in users.views use get or create for profile
+DONE - in users.views use get or create for profile
 '''
