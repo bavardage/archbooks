@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
@@ -46,6 +47,7 @@ def add(request, add_what = None):
                                                          )
                                           )
             else:
+                request.user.message_set.create(message='%s Added Successfully' % add_what.title())
                 return render_to_response('books/done.html',
                                           RequestContext(request,
                                                          {'added_what': saved,
@@ -79,7 +81,7 @@ def show(request, show_what, id=None):
     if show_what not in modeldict:
         raise Http404
     model = modeldict[show_what][0]
-    if id is None:
+    if not id:
         list_info = {
             'queryset' :   model.objects.all(),
             'allow_empty': True,
@@ -99,6 +101,8 @@ def show(request, show_what, id=None):
         else:
             raise Http404
 
+
+@login_required
 def edit(request, edit_what, id):
     if edit_what not in modeldict:
         raise Http404
@@ -124,3 +128,23 @@ def edit(request, edit_what, id):
                                               }
                                              )
                               )
+
+
+@login_required
+def rate_book(request, id, up_or_down):
+    try:
+        book = Book.objects.get(id=id)
+    except DoesNotExist:
+        raise
+    if book.rated_by.filter(id=request.user.id).count():
+        request.user.message_set.create(message='You have already rated this')
+        return HttpResponseRedirect(reverse(show, args=['book', id]))
+    if up_or_down == '+':
+        book.positive_ratings += 1
+    else:
+        book.negative_ratings += 1
+    book.rated_by.add(request.user)
+    book.save()
+    request.user.message_set.create(message='Your rating was taken into consideration')
+    return show(request, 'book', id)
+        

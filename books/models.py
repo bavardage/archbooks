@@ -56,6 +56,13 @@ class Book(BookModel):
     
     def __unicode__(self):
         return self.title
+    
+    def get_rating_percentage(self):
+        positive_ratings, negative_ratings = self.positive_ratings, self.negative_ratings
+        if positive_ratings == 0 and negative_ratings == 0:
+            return u'50%'
+        else:
+            return u'%i%%' % ((float(positive_ratings) / (positive_ratings + negative_ratings))*100)
 
     class Meta:
         ordering = ["title",]

@@ -4,6 +4,10 @@
 {% block header %}<h1>{{book}}</h1>{% endblock %}
 {% block content %}
 <div class="author">written by {{book.authors.all|join:", "}}</div>
+<div class="rating">Rating: {{book.get_rating_percentage}}
+<a href="{% url books.views.rate_book book.id "+" %}">+</a>
+<a href="{% url books.views.rate_book book.id "-" %}">-</a>
+</div>
 <blockquote>
 {{book.blurb|linebreaks}}
 </blockquote>

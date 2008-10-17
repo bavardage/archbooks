@@ -4,4 +4,5 @@ urlpatterns = patterns('',
                        ('^add/(\w+)/$', 'archbooks.books.views.add'),
                        ('^show/(\w+)/(\d*)/*', 'archbooks.books.views.show'),
                        ('^edit/(\w+)/(\d+)/$', 'archbooks.books.views.edit'),
+                       ('^ratebook/(\d+)/([\+-])/$', 'archbooks.books.views.rate_book'),
                        )
