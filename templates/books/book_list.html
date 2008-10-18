@@ -5,9 +5,9 @@
 {% block header %}<h1>Books</h1>{% endblock %}
 
 {% block content %}
-    <ul>
+    <ul class="objectlist">
         {% for book in object_list %}
-            <li><a href="{{book.id}}">{{ book }}</a></li>
+            <li><a href="{{book.id}}"><h3 class="floatleft">{{ book }}</h3><span class="floatleft">by {{book.get_authors}}</span> {{book.genre}} &#9786;&#9785;: {{book.get_rating_percentage}} &#9998;: {{book.review_set.count}}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}

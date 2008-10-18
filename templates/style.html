@@ -10,7 +10,7 @@
     padding: 0px;
     top: 0px;
     position: relative;
-    font-family: Tahoma, Verdana, "Bitstream Vera Sans", "Deja Vu Sans";
+    font-family: "Nimbus Sans L", Tahoma, Verdana, "Bitstream Vera Sans", "Deja Vu Sans";
     font-size: 1.1em;
    }
    #page {
@@ -68,16 +68,17 @@
 }
 
 #navigation ul li.last {
-    padding-right: 0;
+    padding-right: 5px;
 }
 #navigation ul li a, #user a {
 text-decoration: none;
+padding-right: 10px;
 }
 
 #footer {
  font-size: 20px;
  border-top: 1px solid #aaa;
- text-align: left;
+ text-align: center;
  padding: 5px;
  color: #2c6776;
 }
@@ -172,5 +173,48 @@ blockquote {
     padding-top: 10px;
     margin: 0px;
     background: top left no-repeat url('http://127.0.0.1:8000/media/style/speechmarks.png');
+}
+ul.objectlist {
+    list-style: none;
+}
+ul.objectlist li {
+    border: 1px solid #aaa;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    margin: 5px;
+    padding: 10px;
+    background-color: #fef;
+    text-align: right;
+}
+ul.objectlist li .floatleft {
+    float: left;
+    text-decoration: none;
+    margin-left: 5px;
+}
+ul.objectlist a {
+    text-decoration: none;
+}
+ul.objectlist li:hover {
+    background-color: #ffeecc;
+}
+ul.objectlist li:hover a {
+    color: black;
+}
+
+.rating a {
+    text-decoration: none;
+} 
+
+.review {
+    background-color: #fef;
+    padding: 5px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border: 1px solid #aaa;
+}
+
+.review + .review {
+    border-top: 1px solid #aaa;
+    margin-top: 5px;
 }
     </style>

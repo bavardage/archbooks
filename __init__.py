@@ -6,9 +6,12 @@ DONE - enable display of reviews, etc
 DONE - do add/review/?forbook = some id
 - register page
 - edit stuff - WTF DOES THAT MEAN - write some decent TODOS nublar
-- book pictures?
+DOEN in DATABASE- book pictures?
+- add pictures to book_detail
 - MOAR/tidy css
 - isbn auto fill
-- add voting for books
+- let ISBN be optional
+DONE - add voting for books
 DONE - in users.views use get or create for profile
+- paginate book display
 '''

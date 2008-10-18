@@ -53,7 +53,8 @@ class Book(BookModel):
     amazon_link = models.URLField(blank=True)
     bookchan_link = models.URLField(blank=True)
     rated_by = models.ManyToManyField(User, blank=True)
-    
+    cover_image = models.ImageField(upload_to='book_coverimages', blank=True)
+
     def __unicode__(self):
         return self.title
     
@@ -63,6 +64,9 @@ class Book(BookModel):
             return u'50%'
         else:
             return u'%i%%' % ((float(positive_ratings) / (positive_ratings + negative_ratings))*100)
+    
+    def get_authors(self):
+        return u', '.join([str(author) for author in self.authors.all()])
 
     class Meta:
         ordering = ["title",]

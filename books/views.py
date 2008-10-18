@@ -111,6 +111,8 @@ def edit(request, edit_what, id):
     if request.method == 'POST':
         form = modelform(request.POST, request.FILES,instance=modelinstance)
         if form.is_valid():
+            if edit_what == 'book':
+                modelinstance.cover_image.delete()
             added_what = form.save()
             return render_to_response('books/done.html',
                                       RequestContext(request, 

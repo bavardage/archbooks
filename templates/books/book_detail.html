@@ -5,8 +5,8 @@
 {% block content %}
 <div class="author">written by {{book.authors.all|join:", "}}</div>
 <div class="rating">Rating: {{book.get_rating_percentage}}
-<a href="{% url books.views.rate_book book.id "+" %}">+</a>
-<a href="{% url books.views.rate_book book.id "-" %}">-</a>
+<a href="{% url books.views.rate_book book.id "+" %}">&#9786;</a>
+<a href="{% url books.views.rate_book book.id "-" %}">&#9785;</a>
 </div>
 <blockquote>
 {{book.blurb|linebreaks}}
@@ -16,7 +16,7 @@ Genre: {{book.genre}}
 {% if book.series %}| Series: {{book.series}}{% endif %}
 {% if book.amazon_link %} | <a href="{{book.amazon_link}}">Amazon</a> {% endif %}
 </div>
-
+<div class="reviews">
 <h2>Reviews <a href="{% url books.views.add "review" %}?for_book={{book.id}}&back_to={% url books.views.show "book" book.id%}" class="headerlink">add a review</a></h2>
 {% if not book.review_set.count %}
 There are no reviews for this book :(
@@ -29,4 +29,5 @@ There are no reviews for this book :(
 <br/><blockquote>{{review.review_contents}}</blockquote>
 </div>
 {% endfor %}
+</div>
 {% endblock %}
