@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Choose ISBN{% endblock %}
+{% block head %}
+<script type="javascript" src="{{request.HTTP_ROOT}}/media/form_functions.js"></script>
+<script type="text/javascript">
+function clicked(isbn)
+{
+window.opener.setValueOfId('id_ISBN', isbn);
+window.close();
+}
+</script>
+{% endblock %}
+{% block header %}<h1>Select an ISBN Number</h1>{% endblock %}
+{% block content %}
+<h3>Click to select...</h3>
+{% for datum in bookdata %}
+<div class="infobox" onClick="clicked({{datum.isbn}});">
+<strong>Title:</strong> {{datum.title}}
+<br/><strong>Authors:</strong> {{datum.authors}}
+<br/><strong>Summary:</strong> {{datum.summary|truncatewords:20}}
+<br/><strong>ISBN:</strong> {{datum.isbn}}
+</div>
+{% endfor %}
+{% endblock %}

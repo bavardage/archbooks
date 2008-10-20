@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Choose ISBN{% endblock %}
+{% block header %}Select an ISBN Number{% endblock %}
+{% block content %}
+{% for datum in bookdata %}
+<div>
+Title: {{datum.title}}
+<br/>Authors: {{datum.authors}}
+<br/>Summary: {{datum.authors.summary}}
+</div>
+{% endfor %}
+{% endblock %}
