@@ -6,6 +6,7 @@ from django.template import RequestContext
 from django.views.generic import list_detail
 
 from forms import GenreForm, AuthorForm, SeriesForm, BookForm, ReviewForm
+from isbndb import IsbnDB
 from models import Genre, Author, Series, Book, Review
 
 
@@ -15,12 +16,16 @@ modeldict = {'book': (Book, BookForm),
              'series': (Series, SeriesForm),
              'review': (Review, ReviewForm)
              }
-specialfields = {'authors': 'author',
+linkedfields = {'authors': 'author',
                  'series': 'series',
                  'genre': 'genre',
-                 'for_book': 'book'
+                 'for_book': 'book',
                  }
+specialfields = {'ISBN': ('archbooks.books.views.get_isbn', 
+                          [], 
+                          "?book_title=' + document.getElementById('id_title').value + '")}
 
+isbn_db = IsbnDB()
 
 @login_required
 def add(request, add_what = None):
@@ -71,7 +76,8 @@ def add(request, add_what = None):
                               RequestContext(request,
                                              {'adding_what': add_what.title(),
                                               'form': form,
-                                              'specials': specialfields
+                                              'linked': linkedfields,
+                                              'specials': specialfields,
                                               }
                                              )
                               )
@@ -126,7 +132,8 @@ def edit(request, edit_what, id):
     return render_to_response("books/add.html", 
                               RequestContext(request,
                                              {'form': form,
-                                              'specials': specialfields
+                                              'specials': specialfields,
+                                              'linked': linkedfields,
                                               }
                                              )
                               )
@@ -150,3 +157,14 @@ def rate_book(request, id, up_or_down):
     request.user.message_set.create(message='Your rating was taken into consideration')
     return show(request, 'book', id)
         
+
+def get_isbn(request):
+    title = request.GET.get('book_title', None)
+    if title is None:
+        raise Http404
+    BookData = isbn_db.get_book_data('title', title, {'Title': 'title', 'AuthorsText': 'authors', 'Summary': 'summary'})
+    return render_to_response('books/get_isbn.html',
+                              RequestContext(request,
+                                             {'bookdata': BookData }
+                                             )
+                              )
