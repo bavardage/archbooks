@@ -6,12 +6,17 @@
 function clicked(isbn)
 {
 window.opener.setValueOfId('id_ISBN', isbn);
+if(document.getElementById('insert_summary').checked == true)
+{
+window.opener.setValueOfId('id_blurb', document.getElementById(isbn+'_summary').value);
+}
 window.close();
 }
 </script>
 {% endblock %}
 {% block header %}<h1>Select an ISBN Number</h1>{% endblock %}
 {% block content %}
+Insert Summary? <input type="checkbox" id="insert_summary" />
 <h3>Click to select...</h3>
 {% for datum in bookdata %}
 <div class="infobox" onClick="clicked({{datum.isbn}});">
@@ -19,6 +24,7 @@ window.close();
 <br/><strong>Authors:</strong> {{datum.authors}}
 <br/><strong>Summary:</strong> {{datum.summary|truncatewords:20}}
 <br/><strong>ISBN:</strong> {{datum.isbn}}
+<input type="hidden" id="{{datum.isbn}}_summary" value="{{datum.summary}}"/>
 </div>
 {% endfor %}
 {% endblock %}

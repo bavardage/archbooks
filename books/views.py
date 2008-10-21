@@ -23,7 +23,7 @@ linkedfields = {'authors': 'author',
                  }
 specialfields = {'ISBN': ('archbooks.books.views.get_isbn', 
                           [], 
-                          "?book_title=' + document.getElementById('id_title').value + '")}
+                          "?book_title=' + document.getElementById('id_title').value + '&author=' + getTextOfSelectedOption(\'id_authors\') + '")}
 
 isbn_db = IsbnDB()
 
@@ -162,7 +162,14 @@ def get_isbn(request):
     title = request.GET.get('book_title', None)
     if title is None:
         raise Http404
-    BookData = isbn_db.get_book_data('title', title, {'Title': 'title', 'AuthorsText': 'authors', 'Summary': 'summary'})
+    author = request.GET.get('author', None)
+    if author is None:
+        index = 'title'
+        value = title
+    else:
+        index = 'combined'
+        value = '%s by %s' % (title, author)
+    BookData = isbn_db.get_book_data(index, value, {'Title': 'title', 'AuthorsText': 'authors', 'Summary': 'summary'})
     return render_to_response('books/get_isbn.html',
                               RequestContext(request,
                                              {'bookdata': BookData }

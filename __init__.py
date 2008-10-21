@@ -14,4 +14,5 @@ DOEN in DATABASE- book pictures?
 DONE - add voting for books
 DONE - in users.views use get or create for profile
 - paginate book display
+- make pictures have to be approved by someone with permissions
 '''

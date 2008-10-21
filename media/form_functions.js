@@ -11,3 +11,11 @@ function setValueOfId(id, value)
     input = document.getElementById(id);
     input.value = value;
 }
+function getTextOfSelectedOption(id)
+{
+    var text = document.getElementById(id);
+    if(text.selectedIndex != -1)
+	{
+	    return text.options[text.selectedIndex].text;
+	}
+}

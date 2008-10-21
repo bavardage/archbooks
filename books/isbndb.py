@@ -33,10 +33,14 @@ class IsbnDB:
     def validate_isbn(self, isbn, title):
         '''loosely validate the isbn - query isbndb, return true if ok, false otherwise'''
         data = self.get_book_data('isbn', isbn, {'AuthorsText': 'authors', 'Title': 'title'})
+        print "isbn data is ", data
         if not len(data):
             return False
         elif data[0]['title'].lower().find(title.lower()) == -1:
-            return False
+            if data[0]['title'].lower().find(title.lower().replace('the', '').strip()) == -1:
+                return False
+            else:
+                return True
         else:
             return True
 

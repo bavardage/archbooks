@@ -1,6 +1,23 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from fields import ISBNFormField
+
+class ISBNField(models.CharField):
+    def __init__(self, book_title, *args, **kwargs):
+        self.book_title = book_title
+        kwargs['max_length'] = 13
+        super(ISBNField, self).__init__(*args, **kwargs)
+
+    def formfield(self, **kwargs):
+        # This is a fairly standard way to set up some defaults
+        # while letting the caller override them.
+        #kwargs['book_title_field'] = self.book_title
+        defaults = {'form_class': ISBNFormField}
+        defaults.update(kwargs)
+        return super(ISBNField, self).formfield(**defaults)
+
+
 class BookModel(models.Model):
     created_by = models.ForeignKey(User, related_name='created_by_user_%(class)s')
     
@@ -44,17 +61,20 @@ class Series(BookModel):
 class Book(BookModel):
     title = models.CharField(max_length=50)
     authors = models.ManyToManyField(Author)
+    ISBN = ISBNField(title, help_text="Fill in the title and author,\
+ then click '...' to autofill isbn and optionally, blurb")
     series = models.ForeignKey(Series, blank=True, null=True)
     genre = models.ForeignKey(Genre, blank=True)
     blurb = models.TextField()
     positive_ratings = models.IntegerField(default=0)
     negative_ratings = models.IntegerField(default=0)
-    ISBN = models.CharField(max_length=20) #should be an isbn field
+    #ISBN = models.CharField(max_length=20) #should be an isbn field
     amazon_link = models.URLField(blank=True)
     bookchan_link = models.URLField(blank=True)
     rated_by = models.ManyToManyField(User, blank=True)
     cover_image = models.ImageField(upload_to='book_coverimages', blank=True)
-
+    cover_image_authenticated = models.BooleanField(blank=False)
+    
     def __unicode__(self):
         return self.title
     
@@ -70,6 +90,9 @@ class Book(BookModel):
 
     class Meta:
         ordering = ["title",]
+        permissions = (
+            ("can_authenticate_picture", "Can authenticate picture"),
+        )
 
 
 class Review(BookModel):
