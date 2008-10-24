@@ -64,7 +64,7 @@ class Book(BookModel):
     ISBN = ISBNField(title, help_text="Fill in the title and author,\
  then click '...' to autofill isbn and optionally, blurb")
     series = models.ForeignKey(Series, blank=True, null=True)
-    genre = models.ForeignKey(Genre, blank=True)
+    genre = models.ForeignKey(Genre)
     blurb = models.TextField()
     positive_ratings = models.IntegerField(default=0)
     negative_ratings = models.IntegerField(default=0)

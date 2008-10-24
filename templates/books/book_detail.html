@@ -1,7 +1,14 @@
 {% extends "base.html" %}
 
 {% block title %}Showing Book - {{book.name}}{% endblock %}
-{% block header %}<h1>{{book}}</h1>{% endblock %}
+{% block header %}<h1>{{book}}
+{% ifequal request.user book.created_by %}
+<a href="{% url books.views.edit "book" book.id %}" class="headerlink">edit</a>
+{% else %}
+{% if perms.books.change_book %}
+<a href="{% url books.views.edit "book" book.id %}" class="headerlink">edit</a>
+{% endif %}
+{% endifequal %}</h1>{% endblock %}
 {% block content %}
 {% if book.cover_image_authenticated and book.cover_image %}
 <img src="{{ book.cover_image.url }}" class="bookimage" >

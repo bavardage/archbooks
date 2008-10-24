@@ -110,10 +110,14 @@ def show(request, show_what, id=None):
 
 @login_required
 def edit(request, edit_what, id):
+    print request
     if edit_what not in modeldict:
         raise Http404
     model,modelform = modeldict[edit_what]
     modelinstance = get_object_or_404(model, id=id)
+    if not (modelinstance.created_by == request.user or request.user.has_perm('books.change_book')):
+        request.user.message_set.create(message='You don\'t have permission to do that! Tisk tisk...')
+        return HttpResponseRedirect(reverse(show, args=[edit_what, id]))
     if request.method == 'POST':
         form = modelform(request.POST, request.FILES,instance=modelinstance)
         if form.is_valid():
@@ -135,6 +139,7 @@ def edit(request, edit_what, id):
                                              {'form': form,
                                               'specials': specialfields,
                                               'linked': linkedfields,
+                                              'adding_what': edit_what.title(),
                                               }
                                              )
                               )
@@ -156,7 +161,9 @@ def rate_book(request, id, up_or_down):
     book.rated_by.add(request.user)
     book.save()
     request.user.message_set.create(message='Your rating was taken into consideration')
-    return show(request, 'book', id)
+    #return show(request, 'book', id) BAD BAD BAD BAD!
+    return HttpResponseRedirect(reverse(show, args=['book', id]))
+
         
 
 def get_isbn(request):
