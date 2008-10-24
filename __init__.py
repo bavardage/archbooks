@@ -12,8 +12,8 @@ DONE - do add/review/?forbook = some id
 DOEN in DATABASE- book pictures?
 DONE - add pictures to book_detail
 - MOAR/tidy css
-- isbn auto fill
-- let ISBN be optional
+DONE FAIRLY COMPLETELY - isbn auto fill
+CANCELLED - let ISBN be optional 
 DONE - add voting for books
 DONE - in users.views use get or create for profile
 - paginate book display
@@ -23,6 +23,6 @@ DONE- make pictures have to be approved by someone with permissions
 - order form fields
 - make valid html
 - add isbn to book detail
-- add favicon(is that correct, no) add little image to thingy
+DONE - add favicon(is that correct, no) add little image to thingy
 - 
 '''

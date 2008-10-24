@@ -17,7 +17,7 @@
 <div class="info">
 Genre: {{book.genre}} 
 {% if book.series %}| Series: {{book.series}}{% endif %}
-{% if book.amazon_link %} | <a href="{{book.amazon_link}}">Amazon</a> {% endif %}
+{% if book.amazon_link %} | <a href="{{book.amazon_link}}">Amazon</a> {% endif %} | ISBN: <a href="http://isbndb.com/search-all.html?kw={{book.ISBN}}">{{book.ISBN}}</a>
 </div>
 <div class="reviews">
 <h2>Reviews <a href="{% url books.views.add "review" %}?for_book={{book.id}}&back_to={% url books.views.show "book" book.id%}" class="headerlink">add a review</a></h2>
