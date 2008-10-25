@@ -19,7 +19,7 @@
 <h2>Profile Details {% ifequal request.user for_user %}<a class="headerlink" href="{{request.HTTP_ROOT}}/accounts/profile/edit/profile/">edit</a>{% endifequal %}</h2>
 <dl>
   <dt>Picture</dt>
-  <dd><img src="{{request.HTTP_ROOT}}/accounts/profile/get_user_picture/{{for_user.id}}" class="userimage"/></dd>
+  <dd>{% if for_user.get_profile.picture %}<img src="{{for_user.get_profile.picture.url}}" class="userimage"/>{% endif %}</dd>
   <dt>IRC Nickname</dt>
   <dd>{{for_user.get_profile.irc_nickname}}</dd>
   <dt>Other Info</dt>

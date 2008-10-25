@@ -10,4 +10,15 @@
             <li><a href="{{book.id}}"><h3 class="floatleft">{{ book }}</h3><span class="floatleft">by {{book.get_authors}}</span> {{book.genre}} &#9786;&#9785;: {{book.get_rating_percentage}} &#9998;: {{book.review_set.count}}</a></li>
         {% endfor %}
     </ul>
+    {% if is_paginated %}
+    <div class="pagination">
+      {% if has_previous %}
+      <a href="?page={{page_obj.previous_page_number}}">&lt; previous</a>
+      {% endif %}
+      Page {{page_obj.number}} of {{paginator.num_pages}}
+      {% if has_next %}
+      <a href="?page={{ page_obj.next_page_number }}">next &gt;</a>
+      {% endif %}
+    </div>
+    {% endif %}
 {% endblock %}

@@ -88,21 +88,32 @@ def show(request, show_what, id=None):
         raise Http404
     model = modeldict[show_what][0]
     if not id:
+        page = request.GET.get('page', '1')
+        if page != 'last':
+            try:
+                page = int(page)
+            except ValueError:
+                page = 1
+
         list_info = {
             'queryset' :   model.objects.all(),
             'allow_empty': True,
-            }
+            'paginate_by': 3, #make this configurable maybe
+            'page': page,
+            } # no clue why this is here, delete or use?
         return list_detail.object_list(request,
-                                       queryset = model.objects.all(),
-                                       allow_empty = True,
+                                       queryset=model.objects.all(),
+                                       allow_empty=True,
+                                       paginate_by=5,
+                                       page=page
                                        )
 
     else:
         if model.objects.filter(id=id).count():
             return list_detail.object_detail(request,
-                                             queryset = model.objects.all(),
-                                             object_id = id,
-                                             template_object_name = show_what,
+                                             queryset=model.objects.all(),
+                                             object_id=id,
+                                             template_object_name=show_what,
                                              )
         else:
             raise Http404
