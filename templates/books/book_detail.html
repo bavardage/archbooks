@@ -34,7 +34,7 @@ There are no reviews for this book &#9785;
 {% for review in book.review_set.all %}
 <div class="review" id="{{review.id}}" class="review {% cycle 'review-even' 'review-odd' %}">
 <strong>Reviewed by:</strong>
-<a href="{{request.HTTP_ROOT}}/accounts/profile/{{review.created_by.id}}">{{review.created_by}}</a>
+<a href="{% url user_profile_id whichuser=review.created_by.id %}">{{review.created_by}}</a>
 <br/><strong>Rating: </strong> {{review.get_rating_display}}
 <br/><blockquote>{{review.review_contents}}</blockquote>
 </div>

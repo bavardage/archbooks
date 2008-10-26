@@ -5,7 +5,8 @@
 {% block header %}<h1>Your Profile</h1>{% endblock %}
 
 {% block content %}
-<h2>Login Details {% ifequal request.user for_user %}<a class="headerlink" href="{{request.HTTP_ROOT}}/accounts/profile/edit/user/">edit</a>{% endifequal %}</h2>
+<h2>Login Details {% ifequal request.user for_user %}
+<a class="headerlink" href="{% url users.views.edit_profile "user" %}">edit</a>{% endifequal %}</h2>
 <dl>
  <dt>Username</dt>
  <dd>{{for_user.username}}</dd>
@@ -16,7 +17,8 @@
  <dt>Joined</dt>
  <dd>{{for_user.date_joined|naturalday}}
 </dl>
-<h2>Profile Details {% ifequal request.user for_user %}<a class="headerlink" href="{{request.HTTP_ROOT}}/accounts/profile/edit/profile/">edit</a>{% endifequal %}</h2>
+<h2>Profile Details {% ifequal request.user for_user %}
+<a class="headerlink" href="{% url users.views.edit_profile "profile" %}">edit</a>{% endifequal %}</h2>
 <dl>
   <dt>Picture</dt>
   <dd>{% if for_user.get_profile.picture %}<img src="{{for_user.get_profile.picture.url}}" class="userimage"/>{% endif %}</dd>

@@ -1,17 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %} Home {% endblock %}
-{% block header %}<h1>Uploader</h1>{% endblock %}
+{% block header %}<h1>Archbooks</h1>{% endblock %}
 {% block content %}
-<h2>Recently Uploaded Images<a class="headerlink" href="upload/image">upload </a></h2>
-{% for image in images %}
-<img src="{{ request.HTTP_ROOT }}/image/file/{{ image.id }}" width="150"/>
-{% endfor %}
-<h2>Recently Uploaded Files<a class="headerlink" href="upload/file"> upload </a></h2>
-<ul>
-{% for file in files %}
-<li><a href="{{ request.HTTP_ROOT}}/file/file/{{ file.id}}">{{file.basename}}</a></li>
-{% endfor %}
-</ul>
-
+Nothing to see. Move on.. Move on.. Nothing to see here...
 {% endblock %}
