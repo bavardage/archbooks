@@ -1,0 +1,11 @@
+Hi,
+Please confirm your account with archbooks.
+
+Your activation key is {{activation_key}}. This will expire in {{expiration_days}} day{{expiration_days|pluralize}}.
+
+To active you can visit the following url:
+{{site}}{% url registration.views.activate activation_key %}
+
+Regards,
+
+Archbooks

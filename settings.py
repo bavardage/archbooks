@@ -94,5 +94,17 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     'archbooks.users',
     'archbooks.books',
-    'archbooks'
+    'archbooks',
+    'registration',
 )
+
+#registration app settings
+ACCOUNT_ACTIVATION_DAYS = 2
+
+#email
+EMAIL_HOST = 'relay.force9.net'
+
+EMAIL_PORT = 25
+
+DEFAULT_FROM_EMAIL = 'ben@benbex.f9.co.uk'
+

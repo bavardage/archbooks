@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Activated{% endblock %}
+{% block header %}Activated Account{% endblock %}
+{% block content %}
+{{account}}
+{% endblock %}

@@ -5,6 +5,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
+                       (r'^accounts/', include('registration.urls')),
                        (r'^accounts/', include('archbooks.users.urls')),
                        (r'^books/', include('archbooks.books.urls')),
                        ('^admin/(.*)$', admin.site.root),

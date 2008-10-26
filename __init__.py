@@ -26,4 +26,9 @@ DONE - add isbn to book detail
 DONE - add favicon(is that correct, no) add little image to thingy
 - some way of editing author names etc if incorrect, or make people confirm beforehand, or something
  - also figure out a way of stopping books written by Ass Face or w/e - maybe again use isbn for this
+- make a genre hierarchy
+- update GIT say last.fm for books
+- replace HTTP_ROOT with {{site}}
+- make login form have registration form built in - fancy javascript showy hidey etc
+- make activated have login form already autofilled
 '''

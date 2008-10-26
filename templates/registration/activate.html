@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Activated{% endblock %}
+{% block header %}<h1>Activated Account</h1>{% endblock %}
+{% block content %}
+{% if account %}
+<p>Welcome <strong>{{account.username}}</strong></p>
+<p>You can now <a href="{{site}}{% url auth_login %}">login</a></p>
+{% else %}
+The activation didn't seem to work. Perhaps you're already activated? Perhaps you didn't copy the key correctly? Perhaps you are a hax0r.
+{% endif %}
+{% endblock %}
