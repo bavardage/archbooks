@@ -23,6 +23,7 @@ DONE- make pictures have to be approved by someone with permissions
 - maybe redirect to showing book after creation
 - order form fields when adding a book
 - make valid html
+- replace onClick with onclick
 DONE - add isbn to book detail
 DONE - add favicon(is that correct, no) add little image to thingy
 - some way of editing author names etc if incorrect, or make people confirm beforehand, or something
@@ -30,6 +31,6 @@ DONE - add favicon(is that correct, no) add little image to thingy
 - make a genre hierarchy
 - update GIT say last.fm for books
 DONE - replace HTTP_ROOT with {{site}}
-- make login form have registration form built in - fancy javascript showy hidey etc
+DONE - make login form have registration form built in - fancy javascript showy hidey etc
 - make activated have login form already autofilled
 '''

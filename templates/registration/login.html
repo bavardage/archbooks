@@ -1,23 +1,57 @@
 {% extends "base.html" %}
 
 {% block title %}Log in{% endblock %}
-
-{% block header %}Please Log in{% endblock %}
+{% block head %}
+<script type="text/javascript">
+var shown = 'loginform';
+function show(id) {
+document.getElementById(shown).style.display = "none";
+document.getElementById(id).style.display = "block";
+shown = id;
+}
+</script>
+{% endblock %}
+{% block header %}<h1>Please Log in</h1>{% endblock %}
 
 {% block content %}
 
+<div id="loginform">
+  Don't have an account - <a href="#" onclick="show('registrationform');">register</a>
   {% if form.errors %}
     <p class="error">Sorry, that's not a valid username or password</p>
   {% endif %}
 
   <form action='.' method='post'>
-    <label for="username">User name:</label>
-    <input type="text" name="username" value="" id="username">
-    <label for="password">Password:</label>
-    <input type="password" name="password" value="" id="password">
-
-    <input type="submit" value="login" />
-    <input type="hidden" name="next" value="{{ next|escape }}" />
-  <form action='.' method='post'>
-
+    <ul class="form">
+      <li>
+	<label for="username">User name:</label>
+	<input type="text" name="username" value="" id="username">
+      </li>
+      <li>
+	<label for="password">Password:</label>
+	<input type="password" name="password" value="" id="password">
+      </li>
+      <li>
+	<input type="submit" value="login" />
+	<input type="hidden" name="next" value="{{ next|escape }}" />
+      </li>
+    </ul>
+  </form>
+</div>
+<div id="registrationform" style="display: none">
+  Already have an account - <a href="#" onclick="show('loginform');">login</a>
+<form action="{% url registration_register %}" method="POST">
+  <ul class="form">
+    <li><label for="id_username">username:</label>
+      <input id="id_username" type="text" class="required" name="username" maxlength="30" /></li>
+    <li><label for="id_email">email address:</label>
+      <input id="id_email" type="text" class="required" name="email" maxlength="75" /></li>
+    <li><label for="id_password1">password:</label>
+      <input id="id_password1" type="password" class="required" name="password1" /></li>
+    <li><label for="id_password2">password (again):</label>
+      <input id="id_password2" type="password" class="required" name="password2" /></li>
+    <li><input id="id_submit" type="submit" name="submit" value="Send validation email"></li>
+</ul>
+</form>
+</div>
 {% endblock %}
