@@ -158,13 +158,17 @@ def edit(request, edit_what, id):
 
 @login_required
 def rate_book(request, id, up_or_down):
+    ajax = request.GET.get('ajax', False)
     try:
         book = Book.objects.get(id=id)
     except DoesNotExist:
         raise
     if book.rated_by.filter(id=request.user.id).count():
         request.user.message_set.create(message='You have already rated this')
-        return HttpResponseRedirect(reverse(show, args=['book', id]))
+        if ajax:
+            return HttpResponse(book.get_rating_percentage())
+        else:
+            return HttpResponseRedirect(reverse(show, args=['book', id]))
     if up_or_down == '+':
         book.positive_ratings += 1
     else:
@@ -173,7 +177,11 @@ def rate_book(request, id, up_or_down):
     book.save()
     request.user.message_set.create(message='Your rating was taken into consideration')
     #return show(request, 'book', id) BAD BAD BAD BAD!
-    return HttpResponseRedirect(reverse(show, args=['book', id]))
+    print "in rate_book, requst.get thing is", request.GET.get('ajax', False)
+    if request.GET.get('ajax', False):
+        return HttpResponse(book.get_rating_percentage())
+    else:
+        return HttpResponseRedirect(reverse(show, args=['book', id]))
 
         
 
@@ -194,3 +202,4 @@ def get_isbn(request):
                                              {'bookdata': BookData }
                                              )
                               )
+

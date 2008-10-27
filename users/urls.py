@@ -7,4 +7,5 @@ urlpatterns = patterns('',
                        url('^profile/(?P<whichuser>\d+)/$', 'archbooks.users.views.user_profile', name='user_profile_id'),
                        url('^profile/edit/(\w+)/$', 'archbooks.users.views.edit_profile'),
                        url('^profile/get_user_picture/(\d+)/$', 'archbooks.users.views.get_user_picture'),
+                       url('^get_user_messages/$', 'archbooks.users.views.get_user_messages', name='get_user_messages'),
                        )

@@ -1,6 +1,30 @@
 {% extends "base.html" %}
 
 {% block title %}Showing Book - {{book.name}}{% endblock %}
+
+{% block head %}
+<script type="text/javascript">
+google.setOnLoadCallback(function() {
+   rating_url = '{% url rate_book id=book.id,up_or_down="+" %}?ajax=true'
+   //this url initially has a +, so that reverse works
+   function rate_book(up_or_down) {
+      $.get(rating_url.replace('+', up_or_down), function(data) {
+         $('div.rating > span').html(data);
+         updateMessages();
+      });
+   }
+   $('#rate_positive').click(function(e) {
+      e.preventDefault();
+      rate_book('+');
+   });
+   $('#rate_negative').click(function(e) {
+      e.preventDefault();
+      rate_book('-');
+   });
+}); 
+</script>
+{% endblock %}
+
 {% block header %}<h1>{{book}}
 {% ifequal request.user book.created_by %}
 <a href="{% url books.views.edit "book" book.id %}" class="headerlink">edit</a>
@@ -14,9 +38,9 @@
 <img src="{{ book.cover_image.url }}" class="bookimage" >
 {% endif %}
 <div class="author">written by {{book.authors.all|join:", "}}</div>
-<div class="rating">Rating: {{book.get_rating_percentage}}
-<a href="{% url books.views.rate_book book.id "+" %}">&#9786;</a>
-<a href="{% url books.views.rate_book book.id "-" %}">&#9785;</a>
+<div class="rating">Rating: <span>{{book.get_rating_percentage}}</span>
+<a id="rate_positive" href="{% url books.views.rate_book book.id "+" %}">&#9786;</a>
+<a id="rate_negative" href="{% url books.views.rate_book book.id "-" %}">&#9785;</a>
 </div>
 <blockquote>
 {{book.blurb|linebreaks}}

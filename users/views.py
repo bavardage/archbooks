@@ -62,3 +62,7 @@ def get_user_picture(request, userid):
 	mimetype = mimetypes.guess_type(picture.path)[0]
 	image_data = picture.file.read()
 	return HttpResponse(image_data, mimetype=mimetype)
+
+
+def get_user_messages(request):
+	return render_to_response('includes/messages.html', RequestContext(request, {}))

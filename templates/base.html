@@ -2,6 +2,17 @@
 <html lang="en">
 <head>
   <link rel="icon" type="image/png" href="{{site}}/media/favicon.png">
+  <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+  <script type="text/javascript">
+    google.load("jquery", "1");
+    function updateMessages() {
+       $.get('{% url get_user_messages %}', function(html) {
+          $('#messages').append(html);
+          $('#messages div').css('display', 'none');
+          $('#messages div').fadeIn('slow');
+       });
+    };
+  </script>
   {% block head %}
   {% endblock %}
   <title>Archbooks - {% block title %}{% endblock %}</title>
