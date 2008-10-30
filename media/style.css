@@ -1,245 +1,199 @@
-   html {
+/* structure  - margin, padding, width, height, position, display*/
+html {
     margin: 0px;
     padding: 0px;
-    color: #444;
-   }
-   body {
-    background-color: #fff;
+}
+body {
     margin: 0px;
     padding: 0px;
-    top: 0px;
     position: relative;
-    font-family: "Nimbus Sans L", Tahoma, Verdana, "Bitstream Vera Sans", "Deja Vu Sans";
-    font-size: 1.1em;
-   }
-   #page {
-      width: 60%;
-      margin: auto;
-      background-color: #fefefe;
-      padding: 5px;
-      padding-top: 0px;
-      margin-top: 0px;
-      border-right: 5px solid #aaa;
-      border-left: 5px solid #aaa;
-    }
-    #header {
-     min-height: 50px;
-     margin: 5px;
-     margin-top: 0px; margin-bottom: 0px;
-     border: 5px solid #fff;
-     border-top-width: 0px; border-bottom-width: 0px; border-right-width: 0px;
-     padding: 5px;
-    }
-    #header:hover {
-     border-left-color: #aaa;
-    }
-    #content {
-     margin: 5px;
-     margin-top: 0px; margin-bottom: 0px;
-     border-top-width: 0px;
-     border-bottom-width: 0px;
-     padding: 5px;
-    }
-    h1, h2, h3, h4, h5, h6, h7 {
-     margin: 0px;
-     font-family: Sylfaen, Georgia;
-     font-weight: normal;
-    }
-    #navigation {
-    font-size: 20px;
-    border-bottom: 1px solid #aaa;
-    text-align: right;
-    margin: 0px;
-    background: url('header_bg.png');
-    }
+    top: 0px;
+}
 
+#navigation {
+    margin: 0px;
+}
 #navigation ul {
-    /*list-style-image: none;*/
-    /*list-style-type: bullet;*/
     margin: auto;
     padding: 5px;
     width: 800px;
 }
-
 #navigation ul li {
-    display: inline;
+    display: inline; /* try float: left with something else in the nav div*/
     padding: 5px;
-    text-transform: lowercase;
 }
 
-#navigation ul li.last {
-    padding-right: 5px;
+#page {
+    width: 80%;
+    padding:  0px 5px 5px 5px; /*top right bottom left*/
+    margin: 0px 20% auto  0%;    
 }
-#navigation ul li a, #user a {
-text-decoration: none;
-padding-right: 10px;
+
+#content {
+    margin: 0px 5px 0px 5px;
+    padding: 5px;
+}
+
+#header {
+    min-height: 50px;
+    margin: 0px 5px 0px 5px;
+    padding: 5px;
 }
 
 #footer {
- font-size: 20px;
- border-top: 1px solid #aaa;
- text-align: center;
- padding: 5px;
- color: #2c6776;
-}
-#messages {
-float: right;
-width: 18%;
-}
-#messages div.message{
-  border: 1px solid #ccc;
-  background-color: #ffeecc;
-  margin-top: 5px;
-  padding: 5px;
-  color: #444;
-}
-#messages:hover div.message {
-  border-color: #aaa;
-  color: black;
-}
-#user {
-float: left;
-width: 18%;
-padding: 5px;
+    padding: 5px;
 }
 
-
-
-input {
-font-family: Tahoma, sans;
-text-align: center;
-color: #444;
+#sidebar {
+    float: right;
+    width: 18%;
 }
-input:focus {
-color: black;
-}
-input:hover {
- color: #2c6776;
-}
-input.largeinput {
-font-size: 30px;
+#sidebar div {
+    padding: 5px;
+    margin: 5px;
 }
 
-a {
-    color: #2c6776;
+h1,h2,h3,h4,h5,h6,h7 {
+    margin: 0px;
 }
 
-a:hover {
-    text-decoration: none;
-    color: black;
-}
-p{
- border-left: 5px solid #fff;
-}
-p:hover{
- border-left: 5px solid #aaa;
-}
-
-a.headerlink{
-color: #aaa;
-margin-left: 5px;
-text-decoration: none;
-font-family: Tahoma, Verdana;
-font-size: 80%;
-}
-a.headerlink:hover {
-color: #2c6776;
+a.headerlink {
+    margin-left: 5px;
 }
 
 ul.form {
-list-style: none;
+    list-style: none;
 }
 ul.form li {
- padding: 5px;
+    padding: 5px;
 }
-
 ul.form li label {
-margin-right: 10px;
-width: 200px;
-float: left;
-border-bottom: 1px solid #aaa;
+    margin-right: 10px;
+    width: 200px;
+    float: left;
+}
+ul.objectlist li {
+    margin: 5px;
+    padding: 10px;
+}
+ul.objectlist li .floatleft {
+    float: left;
+    margin-left: 5px;
 }
 
-ul.form li input:after {
-content: "<br/>";
-}
 .userimage {
-max-width: 200px;
-max-height: 200px;
+    max-width: 200px;
+    max-height: 200px;
 }
 
 blockquote {
     padding-left: 50px;
     padding-top: 10px;
     margin: 0px;
+}
+
+.review {
+    padding: 5px;
+}
+.review + .review {
+    margin-top: 5px;
+}
+
+.infobox {
+    padding: 5px;
+    margin: 5px;
+}
+
+.bookimage {
+    padding: 5px;
+    float: right;
+    max-height: 300px;
+    max-width: 150px;
+    margin: 5px;
+}
+
+/* borders and backgrounds */
+/* really need to make a class - curved - for curved borders! */
+/* need to make a class for solid #aaa borders too */
+
+body {
+    background-color: #fff;
+}
+
+#navigation {
+    border-bottom: 1px solid #aaa;
+    background: url('header_bg.png') repeat-x;
+}
+
+#page {
+    background-color: #fefefe;
+    border-right: 1px solid #aaa;
+}
+
+#footer {
+    border-top: 1px solid #aaa;
+}
+
+#sidebar div {
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border: 1px solid #aaa;
+}
+#sidebar .message {
+    border-color: #ccc;
+    background-color: #ffffbb;
+}
+#sidebar .message:hover {
+    border-color: #aaa;
+}
+
+ul.form li label {
+    border-bottom: 1px solid #aaa;
+}
+
+blockquote {
     background: top left no-repeat url('style/speechmarks.png');
 }
-ul.objectlist {
-    list-style: none;
-}
+
 ul.objectlist li {
     border: 1px solid #aaa;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
-    margin: 5px;
-    padding: 10px;
     background-color: #fef;
-    text-align: right;
-}
-ul.objectlist li .floatleft {
-    float: left;
-    text-decoration: none;
-    margin-left: 5px;
-}
-ul.objectlist a {
-    text-decoration: none;
 }
 ul.objectlist li:hover {
-    background-color: #ffeecc;
+    background-color: #fec;
 }
-ul.objectlist li:hover a {
-    color: black;
-}
-
-.rating a {
-    text-decoration: none;
-} 
 
 .review {
     background-color: #fef;
-    padding: 5px;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
     border: 1px solid #aaa;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
 }
 
 .review + .review {
     border-top: 1px solid #aaa;
-    margin-top: 5px;
 }
 
 .infobox {
     border: 1px solid #aaa;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
-    -khtml-border-radius: 10px;
     background-color: #fef;
-    padding: 5px;
-    margin: 5px;
-}
-
-.infobox:hover {
-    background-color: #fec;
 }
 
 .bookimage {
-  padding: 5px;
-  border: 2px solid #aaa;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  float: right;
-  max-height: 300px;
-  max-width: 150px;
-  background-color: #aaa;
-  margin: 5px;
+    border: 2px solid #aaa;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px; 
+    background-color: #aaa;
+}
+
+/* font stuffs */
+
+body {
+    color: #444;
+    font-family: "Nimbus Sans L", Tahoma, Verdana, sans-serif;
+    font-size: 1.0em;
 }
