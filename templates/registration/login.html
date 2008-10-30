@@ -1,22 +1,12 @@
 {% extends "base.html" %}
 
 {% block title %}Log in{% endblock %}
-{% block head %}
-<script type="text/javascript">
-var shown = 'loginform';
-function show(id) {
-document.getElementById(shown).style.display = "none";
-document.getElementById(id).style.display = "block";
-shown = id;
-}
-</script>
-{% endblock %}
 {% block header %}<h1>Please Log in</h1>{% endblock %}
 
 {% block content %}
 
 <div id="loginform">
-  Don't have an account - <a href="#" onclick="show('registrationform');">register</a>
+  Don't have an account - <a href="#" onclick="$('#loginform').hide('slow'); $('#registrationform').show('slow');">register</a>
   {% if form.errors %}
     <p class="error">Sorry, that's not a valid username or password</p>
   {% endif %}
@@ -39,7 +29,7 @@ shown = id;
   </form>
 </div>
 <div id="registrationform" style="display: none">
-  Already have an account - <a href="#" onclick="show('loginform');">login</a>
+  Already have an account - <a href="#" onclick="$('#registrationform').hide('slow'); $('#loginform').show('slow');">login</a>
 <form action="{% url registration_register %}" method="POST">
   <ul class="form">
     <li><label for="id_username">username:</label>
