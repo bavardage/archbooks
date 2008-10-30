@@ -16,7 +16,8 @@ body {
 #navigation ul {
     margin: auto;
     padding: 5px;
-    width: 800px;
+    width: 80%;
+    margin: 0px 20% auto 0%;
 }
 #navigation ul li {
     display: inline; /* try float: left with something else in the nav div*/
@@ -55,6 +56,10 @@ body {
 
 h1,h2,h3,h4,h5,h6,h7 {
     margin: 0px;
+}
+
+input {
+    padding: 1px;
 }
 
 a.headerlink {
@@ -147,6 +152,15 @@ body {
     border-color: #aaa;
 }
 
+input {
+    border: 2px solid #aaa;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+input:focus, input:hover {
+    border: 2px solid #2c6776;
+}
+
 ul.form li label {
     border-bottom: 1px solid #aaa;
 }
@@ -155,6 +169,9 @@ blockquote {
     background: top left no-repeat url('style/speechmarks.png');
 }
 
+ul.objectlist {
+    list-style: none;
+}
 ul.objectlist li {
     border: 1px solid #aaa;
     -moz-border-radius: 10px;
@@ -196,4 +213,59 @@ body {
     color: #444;
     font-family: "Nimbus Sans L", Tahoma, Verdana, sans-serif;
     font-size: 1.0em;
+}
+
+h1, h2, h3, h4, h5, h6, h7 {
+    font-family: Georgia, serif;
+    font-weight: normal;
+    font-style: italic;
+}
+
+#navigation {
+    text-align: right;
+}
+#navigation ul li a {
+    text-decoration: none;
+}
+
+#footer {
+    color: #2c6776;
+    text-align: center;
+}
+
+input {
+    font-family: Tahoma, sans;
+    color: #444;
+}
+input:focus {
+    color: black;
+}
+input:hover {
+    color: #2c6776;
+}
+
+a {
+    color: #2c6776;
+}
+a:hover {
+    text-decoration: none;
+    color: black;
+}
+a.headerlink {
+    color: #aaa;
+    font-size: 80%;
+    text-decoration: none;
+    font-style: normal;
+    font-family: Tahoma, Verdana, sans-serif;
+}
+
+ul.objectlist li {
+    text-align: right;
+}
+ul.objectlist li:hover a {
+    color: black;
+}
+
+.rating a {
+    text-decoration: none;
 }
