@@ -5,6 +5,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.views.generic import list_detail
 
+from decorators import login_required_ajax
 from forms import GenreForm, AuthorForm, SeriesForm, BookForm, ReviewForm
 from isbndb import IsbnDB
 from models import Genre, Author, Series, Book, Review
@@ -104,7 +105,7 @@ def show(request, show_what, id=None):
         return list_detail.object_list(request,
                                        queryset=model.objects.all(),
                                        allow_empty=True,
-                                       paginate_by=5,
+                                       paginate_by=3,
                                        page=page
                                        )
 
@@ -156,7 +157,7 @@ def edit(request, edit_what, id):
                               )
 
 
-@login_required
+@login_required_ajax
 def rate_book(request, id, up_or_down):
     ajax = request.GET.get('ajax', False)
     try:

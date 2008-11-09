@@ -1,3 +1,7 @@
+{% if request.GET.ajax %}
+{% block ajax %}
+{% endblock %}
+{% else %}
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html lang="en">
 <head>
@@ -43,3 +47,4 @@
 </div>
 </body>
 </html>
+{% endif %}

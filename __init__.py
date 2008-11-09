@@ -1,5 +1,20 @@
 '''
 TODO LIST
+- frontpage
+- set pagination to be sane, make it configable
+- approve book picture backend
+- show book after creation?
+- change book creation form field order
+- valid html
+    -onClick onclick
+
+- some way of editing author names etc if incorrect, or make people confirm beforehand, or something
+ - also figure out a way of stopping books written by Ass Face or w/e - maybe again use isbn for this
+- make a genre hierarchy
+- make activated have login form already autofilled
+
+- make genre description optional
+----------------------------------------------------
 DONE - make other info for user profile accept null/blank
 
 DONE - only allow people who made stuff able to edit stuff!!!

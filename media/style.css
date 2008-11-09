@@ -258,6 +258,10 @@ a.headerlink {
     font-style: normal;
     font-family: Tahoma, Verdana, sans-serif;
 }
+a.inactive {
+    text-decoration: none;
+    color: #aaa;
+}
 
 ul.objectlist li {
     text-align: right;
