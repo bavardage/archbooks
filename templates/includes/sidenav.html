@@ -1,0 +1,6 @@
+<h3>Navigation</h3>
+<h4>Books<a class="headerlink" href="#" onclick="$('#booknav').slideToggle('slow');">+</a></h4>
+<ul id="booknav" style="display: none;">
+<li><a href="{% url books_show "book" %}">Show books</a></li>
+<li><a href="{% url books_add "book" %}"> Add new book</a></li>
+</ul>

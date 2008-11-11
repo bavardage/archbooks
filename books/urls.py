@@ -1,7 +1,7 @@
 from django.conf.urls.defaults import *
 
 urlpatterns = patterns('',
-                       url('^add/(\w+)/$', 'archbooks.books.views.add'),
+                       url('^add/(\w+)/$', 'archbooks.books.views.add', name='books_add'),
                        url('^show/(\w+)/(\d*)/*', 'archbooks.books.views.show'),
                        url('^show/(\w+)/$', 'archbooks.books.views.show', name='books_show'),
                        url('^edit/(\w+)/(\d+)/$', 'archbooks.books.views.edit'),

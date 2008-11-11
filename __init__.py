@@ -1,6 +1,7 @@
 '''
 TODO LIST
 - frontpage
+- navigation
 - set pagination to be sane, make it configable
 - approve book picture backend
 - show book after creation?
