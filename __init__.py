@@ -1,5 +1,8 @@
 '''
 TODO LIST
+---------------------------
+DEFINE WHAT'S WHAT
+---------------------------
 Books are a collection of ISBNs
  - what is cached locally, and what happens when local clashes with ISBN?
  - what happens when another ISBN is added - is this just added ad-hoc, is it checked to make sure title and author match the other ISBN(s), what if there are subtle spelling differences, or e.g. The Golden Compass vs Northern Lights - probably better to make it creator-controlled
@@ -10,8 +13,36 @@ Books are a collection of ISBNs
  - should there be comments too? comments being less than a review
  - should reviews be approved first?
 
+   to summarise - perhaps a 'Book' object in the database should be mainly metadata - ratings, who owns this, reviews, comments, views, suggestions, etc, with some cached info derived from the ISBNs.
+
 Series
  - series are a collection of books
+ nothing too fancy there
+
+
+DEFINE HOW THE ACTION OF CREATING A BOOK GOES
+ - user enters title and author, searches for an isbn, chooses an isbn, and confirms
+ - book object is created in the database, fields filled from ISBN data but not initially 'VISIBLE' <-- define a term, like wordpress 'published' vs 'unpublished' but this would be confusing for a book - need another term
+ - user is taken to an 'edit book' page, where they can add to/amend the cached isbn data, checks a box to make VISIBLE
+    - this page is the same as that used generally to edit a book object
+ - book is now viewable by the general public
+
+
+HOW ARE BOOKS CONTRIBUTED TO BY USERS (NOT CREATORS)
+ - users view the book
+ - they make suggestions somehow which are approved by the creator/admins/etc
+  - how are suggestions done
+  - maybe the book object is cloned in the database, with the user as the 'creator' of this, the user taken to the edit-book page, they change what they want to, and submit, but this cloned book has some field is_suggestion marked positive
+  - the original creator logs in, sees a suggestion has been made, views it
+     - how is it merged
+  - maybe suggestions are made per-field? GenreSuggestion SummarySuggestion TitleSuggestion - what do we need to make 'suggestable' - should they be able to change title, or is this just stupid
+          - what title do we go with when there are multiple titles? i.e. Golden Compass Northern Lights edit wars
+  - links and such - should these be vetted first, vetted by whom? vetted by contributor I'd think
+    - users want to add a link, they click add-new-link and are taken to an add-new-link page (or perhaps a form pops up in the page, but again, UI)
+    - they enter the url and a title for the url i.e. Amazon Link, Bookchan Link, Picture of yo momma naked
+    - links are approved by the creator/admins
+
+
 
 
 
